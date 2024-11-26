@@ -8,3 +8,5 @@ const boardsSlice = createSlice({
         // reducers here
     }
 })
+
+export default boardsSlice
