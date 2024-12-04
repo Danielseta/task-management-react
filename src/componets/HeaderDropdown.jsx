@@ -1,5 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import boardIcon from '../assets/icon-board.svg'
+import darkIcon from "../assets/icon-dark-theme.svg"
+import lightIcon from "../assets/icon-light-theme.svg"
 
 function HeaderDropdown({setOpenDropdown}) {
 
@@ -27,10 +30,24 @@ function HeaderDropdown({setOpenDropdown}) {
 
       <div>
          {boards.map((board , index) => (
-          <div className={` flex items-baseline space-x-2 px-5 py-4 ${board.isActive && 'bg-[#635fc7] rounded-r-full text-white mr-8'} `}>
-
+          <div className={` flex items-baseline space-x-2 px-5 py-4 ${board.isActive && 'bg-[#635fc7] rounded-r-full text-white mr-8'} `} key={index}>
+            <img src={boardIcon} className=' h-4'/>
+            <p className=' text-lg font-bold'>{board.name}</p>
           </div>
          ))}
+         <div className='flex items-baseline space-x-2 text-[#635fc7] px-5 py-4'>
+          <img src={boardIcon} className='h-4'/>
+          <p className='text-lg font-bold'>Create New Board</p>
+         </div>
+
+         <div className=' mx-2 p-4 space-x-2 bg-state-100 dark:bg-[#20212c] flex justify-center items-center rounded-lg'>
+          <img src={lightIcon} />
+
+            {/** dark:light */}
+
+            <img src={darkIcon} />
+
+         </div>
       </div>
 
       </div>
