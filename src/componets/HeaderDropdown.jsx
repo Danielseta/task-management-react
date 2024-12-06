@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux'
 import boardIcon from '../assets/icon-board.svg'
 import darkIcon from "../assets/icon-dark-theme.svg"
 import lightIcon from "../assets/icon-light-theme.svg"
+import { Switch } from '@headlessui/react'
 
 function HeaderDropdown({setOpenDropdown}) {
+  const [colorTheme, setTheme] = useDark
 
   const boards = useSelector((state) => state.boards)
 
-  console.log( 'boards =' , boards)
+ 
   return (
     <div className=' py-10 px-6 absolute left-0 right-0 bottom-[-100vh] top-16 bg-[#00000080]'
     onClick={
@@ -42,6 +44,11 @@ function HeaderDropdown({setOpenDropdown}) {
 
          <div className=' mx-2 p-4 space-x-2 bg-state-100 dark:bg-[#20212c] flex justify-center items-center rounded-lg'>
           <img src={lightIcon} />
+
+
+          <Switch className={` `}>
+
+          </Switch>
 
             {/** dark:light */}
 
