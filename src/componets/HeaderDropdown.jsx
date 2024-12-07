@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import boardIcon from '../assets/icon-board.svg'
 import darkIcon from "../assets/icon-dark-theme.svg"
 import lightIcon from "../assets/icon-light-theme.svg"
 import { Switch } from '@headlessui/react'
+import useDarkMode from '../Hooks/useDarkMode'
 
 function HeaderDropdown({setOpenDropdown}) {
-  const [colorTheme, setTheme] = useDark
+  const [colorTheme, setTheme] = useDarkMode()
+  const [darkSide, setDarkSide] = useState(
+    colorTheme === 'light' ? true : false
+  )
+
+  const toggleDarkMode = (checked) => {
+    setTheme(colorTheme)
+  }
 
   const boards = useSelector((state) => state.boards)
 
@@ -46,7 +54,11 @@ function HeaderDropdown({setOpenDropdown}) {
           <img src={lightIcon} />
 
 
-          <Switch className={` `}>
+          <Switch 
+          checked={darkSide}
+          onChange={toggleDarkMode} 
+          className={` ${darkSide ? 'bg-[#635fc7]' : 'bg-gray-200'}
+           relative inline-flex h-6 w-11 items-center rounded-full`}>
 
           </Switch>
 
