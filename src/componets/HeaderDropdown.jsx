@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import boardIcon from "../assets/icon-board.svg";
-import darkIcon from "../assets/icon-dark-theme.svg";
-import lightIcon from "../assets/icon-light-theme.svg";
-import { Switch } from "@headlessui/react";
-import useDarkMode from "../Hooks/useDarkMode";
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import boardIcon from '../assets/icon-board.svg'
+import darkIcon from '../assets/icon-dark-theme.svg'
+import lightIcon from '../assets/icon-light-theme.svg'
+import { Switch } from '@headlessui/react'
+import useDarkMode from '../Hooks/useDarkMode'
 
 function HeaderDropdown({ setOpenDropdown }) {
   const [colorTheme , setTheme] = useDarkMode()
@@ -77,7 +77,7 @@ function HeaderDropdown({ setOpenDropdown }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default HeaderDropdown;
