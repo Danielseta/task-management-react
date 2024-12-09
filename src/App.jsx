@@ -15,7 +15,7 @@ const App = () => {
 
     {/* Center */}
 
-    <Center/>
+    <Center/> 
 
 
     </div>
