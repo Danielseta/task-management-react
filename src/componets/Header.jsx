@@ -6,7 +6,7 @@ import elipsis from "../assets/icon-vertical-elipsis.svg";
 import HeaderDropdown from './HeaderDropdown';
 
 
-const Header = () => {
+const Header = ({ setBoardModalOpen , boardModalOpen}) => {
 
     const [openDropdown, setOpenDropdown] = useState(false)
  
