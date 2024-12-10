@@ -48,7 +48,7 @@ function HeaderDropdown({ setOpenDropdown, setOpenModalOpen }) {
               <p className=" text-lg font-bold">{board.name}</p>
             </div>
           ))}
-          <div className="flex items-baseline space-x-2 text-[#635fc7] px-5 py-4"
+          <div className='flex items-baseline space-x-2 text-[#635fc7] px-5 py-4'
           onClick={()=> {
             setBoardModalOpen(true)
               setOpenDropdown(false)

@@ -7,7 +7,7 @@ import HeaderDropdown from './HeaderDropdown';
 import AddEditBoardModal from '../modals/AddEditBoardModal';
 
 
-const Header = ({ setBoardModalOpen , boardModalOpen}) => {
+function Header  ({ setBoardModalOpen , boardModalOpen})  {
 
     const [openDropdown, setOpenDropdown] = useState(false)
  
