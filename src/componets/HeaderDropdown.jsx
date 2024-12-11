@@ -6,7 +6,7 @@ import lightIcon from '../assets/icon-light-theme.svg'
 import { Switch } from '@headlessui/react'
 import useDarkMode from '../Hooks/useDarkMode'
 
-function HeaderDropdown({ setOpenDropdown, setOpenModalOpen }) {
+function HeaderDropdown({ setOpenDropdown, setBoardModalOpen }) {
   const [colorTheme , setTheme] = useDarkMode()
   const [darkSide, setDarkSide] = useState(
     colorTheme === 'light' ? true : false
