@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import boardIcon from '../assets/icon-board.svg'
-import darkIcon from '../assets/icon-dark-theme.svg'
-import lightIcon from '../assets/icon-light-theme.svg'
-import { Switch } from '@headlessui/react'
-import useDarkMode from '../Hooks/useDarkMode'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import boardIcon from "../assets/icon-board.svg";
+import darkIcon from "../assets/icon-dark-theme.svg";
+import lightIcon from "../assets/icon-light-theme.svg";
+import { Switch } from "@headlessui/react";
+import useDarkMode from "../Hooks/useDarkMode";
 
 function HeaderDropdown({ setOpenDropdown, setBoardModalOpen }) {
-  const [colorTheme , setTheme] = useDarkMode()
+  const [colorTheme, setTheme] = useDarkMode();
   const [darkSide, setDarkSide] = useState(
-    colorTheme === 'light' ? true : false
-  )
+    colorTheme === "light" ? true : false
+  );
 
   const toggleDarkMode = (checked) => {
-    setTheme(colorTheme)
-    setDarkSide(checked)
-  }
+    setTheme(colorTheme);
+    setDarkSide(checked);
+  };
 
-  const boards = useSelector((state) => state.boards)
+  const boards = useSelector((state) => state.boards);
 
   return (
     <div
@@ -48,12 +48,12 @@ function HeaderDropdown({ setOpenDropdown, setBoardModalOpen }) {
               <p className=" text-lg font-bold">{board.name}</p>
             </div>
           ))}
-          <div className='flex items-baseline space-x-2 text-[#635fc7] px-5 py-4'
-          onClick={()=> {
-            setBoardModalOpen(true)
-              setOpenDropdown(false)
-            
-          }}
+          <div
+            className=" cursor-pointer flex items-baseline space-x-2 text-[#635fc7] px-5 py-4"
+            onClick={() => {
+              setBoardModalOpen(true);
+              setOpenDropdown(false);
+            }}
           >
             <img src={boardIcon} className="h-4" />
             <p className="text-lg font-bold">Create New Board</p>
@@ -83,7 +83,7 @@ function HeaderDropdown({ setOpenDropdown, setBoardModalOpen }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default HeaderDropdown;
