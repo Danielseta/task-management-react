@@ -18,6 +18,12 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
         <h3 className=" text-lg">
           {type === "edit" ? "Edit" : "Add Now"} Board
         </h3>
+        {/** task name */}
+        <div className="mt-8 flex flex-col space-y-3">
+          <label className=" text-sm dark:text-white text-gray-500">
+            Board Column
+          </label>
+        </div>
       </div>
     </div>
   );
