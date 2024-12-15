@@ -8,6 +8,7 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [boardType, setBoardType] = useState("add");
 
   return (
     <div className=" p-4 fixed left-0 bg-white dark:bg-[#2b2c37] z-50 right-0">
@@ -50,7 +51,10 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
       )}
 
       {boardModalOpen && (
-        <AddEditBoardModal setBoardModalOpen={setBoardModalOpen} />
+        <AddEditBoardModal
+          type={boardType}
+          setBoardModalOpen={setBoardModalOpen}
+        />
       )}
     </div>
   );
