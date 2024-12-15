@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+import crossIcon from "../assets/icon-cross.svg";
 function AddEditBoardModal({ setBoardModalOpen, type }) {
   const [name, setName] = useState("");
   const [newColumns, setnewColumns] = useState([
@@ -14,6 +14,10 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
       column.name = newValue;
       return newState;
     });
+  };
+
+  const onDelete = (id) => {
+    setnewColumns((perState) => perState.filter((el) => el.id !== id));
   };
   return (
     <div
@@ -57,13 +61,33 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
               <input
                 className=" bg-transparent flex-grow px-4 py-2 rounded-md text-sm border border-gray-600 outline-none focus:outline-[#735fc7] "
                 onChange={(e) => {
-                  onChange();
+                  onChange(column.id, e.target.value);
                 }}
                 value={column.name}
                 type="text"
               />
+              <img
+                src={crossIcon}
+                className=" cursor-pointer m-4"
+                onClick={() => {
+                  onDelete(column.id);
+                }}
+              />
             </div>
           ))}
+        </div>
+        <div>
+          <button
+            className=" w-full items-center hover:opacity-75 dark:text-[#635fc7] dark:bg-white text-white bg-[#635fc7] mt-2 py-2 rounded-full"
+            onClick={() => {
+              setnewColumns((state) => [
+                ...state,
+                { name: "", task: [], id: uuidv4() },
+              ]);
+            }}
+          >
+            + Add new column
+          </button>
         </div>
       </div>
     </div>
