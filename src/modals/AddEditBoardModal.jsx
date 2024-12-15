@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 function AddEditBoardModal({ setBoardModalOpen, type }) {
+  const [name, setName] = useState("");
+  const [newColumns, setnewColumns] = useState(
+    [
+      {name : 'TODO' , task : [] , id : ''}
+      {name : 'Doing' , task : [] , id : ''}
+    ]
+  )
   return (
     <div
       onClick={(e) => {
@@ -22,6 +29,21 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
         <div className="mt-8 flex flex-col space-y-3">
           <label className=" text-sm dark:text-white text-gray-500">
             Board Column
+          </label>
+          <input
+            className="bg-transparent px-4 py-2 rounded-md text-sm border border-gray-600 outline-none focus:outline-[#635fc7] outline-1 ring-0"
+            placeholder=" e.g Ui Design"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            id="board-name-input"
+          />
+        </div>
+        {/** Columns */}
+        <div className=" mt-8 flex flex-col space-y-3">
+          <label className="text-sm dark:text-white text-gray-500">
+            Board Columns
           </label>
         </div>
       </div>
