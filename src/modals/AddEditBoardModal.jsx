@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function AddEditBoardModal({ setBoardModalOpen, type }) {
   const [name, setName] = useState("");
-  const [newColumns, setnewColumns] = useState(
-    [
-      {name : 'TODO' , task : [] , id : ''}
-      {name : 'Doing' , task : [] , id : ''}
-    ]
-  )
+  const [newColumns, setnewColumns] = useState([
+    { name: "TODO", task: [], id: uuidv4() },
+    { name: "Doing", task: [], id: uuidv4() },
+  ]);
+  const onChange = (id, newValue) => {
+    setnewColumns((pervState) => {
+      const newState = [...pervState];
+      const column = newState.find((col) => col.id === id);
+      column.name = newValue;
+      return newState;
+    });
+  };
   return (
     <div
       onClick={(e) => {
@@ -45,6 +52,18 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
           <label className="text-sm dark:text-white text-gray-500">
             Board Columns
           </label>
+          {newColumns.map((column, index) => (
+            <div key={index} className=" flex items-center w-full">
+              <input
+                className=" bg-transparent flex-grow px-4 py-2 rounded-md text-sm border border-gray-600 outline-none focus:outline-[#735fc7] "
+                onChange={(e) => {
+                  onChange();
+                }}
+                value={column.name}
+                type="text"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
