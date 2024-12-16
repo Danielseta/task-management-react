@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { v4 as uuidv4, validate } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
+import { useDispatch } from "react-redux";
 function AddEditBoardModal({ setBoardModalOpen, type }) {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const [isValid, setIsValid] = useState(true);
   const [newColumns, setnewColumns] = useState([
     { name: "TODO", task: [], id: uuidv4() },
     { name: "Doing", task: [], id: uuidv4() },
@@ -18,6 +21,27 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
 
   const onDelete = (id) => {
     setnewColumns((perState) => perState.filter((el) => el.id !== id));
+  };
+  const validate = () => {
+    setIsValid(false);
+    if (!name.trim()) {
+      return false;
+    }
+    for (let i = 0; i < name.length; i++) {
+      if (!newColumns[i].name.trim()) {
+        return false;
+      }
+    }
+    setIsValid(true);
+    return true;
+  };
+  const onSubmit = (type) => {
+    setBoardModalOpen(false);
+    if (type === "add") {
+      //dispatch
+    } else {
+      //dispatch
+    }
   };
   return (
     <div
@@ -92,6 +116,7 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
             className=" w-full items-center hover:opacity-75 dark:text-white dark:bg-[#635fc7] mt-8 relative text-white bg-[#635fc7] py-2 rounded-full"
             onClick={() => {
               const isValid = validate();
+              if (isValid === true) onSubmit(type);
             }}
           >
             {type === "add" ? "Create New Board" : "Save Changes"}
