@@ -8,13 +8,13 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
-  const dispatch = useDispatch();
-
   const [openDropdown, setOpenDropdown] = useState(false);
   const [boardType, setBoardType] = useState("add");
 
+  const dispatch = useDispatch();
+
   const boards = useSelector((state) => state.boards);
-  const board = boards.find(board.isActive);
+  const board = boards.find((board) => board.isActive);
 
   return (
     <div className=" p-4 fixed left-0 bg-white dark:bg-[#2b2c37] z-50 right-0">
