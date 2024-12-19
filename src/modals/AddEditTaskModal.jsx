@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   return (
     <div
@@ -23,14 +24,27 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
         </h3>
 
         <div className=" mt-8 flex flex-col space-y-1">
-          <Label className=" text-sm dark:text-white text-gray-500 ">
+          <label className=" text-sm dark:text-white text-gray-500 ">
             Task Name
-          </Label>
+          </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className=" bg-transparent px-4 py-2 outline-none focus:border-0 rounded-md rounded-md text-sm border border-gray-600 focus:out"
+            className=" bg-transparent px-4 py-2 outline-none focus:border-0 rounded-md text-sm border border-gray-600 focus:outline-[#635fc7] ring-0"
             type="text"
+            placeholder="e.g Take coffe break"
+          />
+        </div>
+        {/** discription */}
+        <div className=" mt-8 flex flex-col space-y-1">
+          <label className=" text-sm dark:text-white text-gray-500 ">
+            Task Name
+          </label>
+          <textarea
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className=" bg-transparent px-4 py-2 outline-none focus:border-0 min-h-[200px] rounded-md text-sm border border-gray-600 focus:outline-[#635fc7] ring-0"
+            placeholder="e.g 15 minute break will recharge the batteries"
           />
         </div>
       </div>
