@@ -93,6 +93,17 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
               />
             </div>
           ))}
+          <button
+            onClick={() => {
+              setSubtasks((state) => [
+                ...state,
+                { title: "", isCompleted: false, id: uuidv4() },
+              ]);
+            }}
+            className=" w-full items-center dark:text-[#635fc7] dark:bg-white text-white bg-[#635fc7] py-2 rounded-full"
+          >
+            +Add New Subtask
+          </button>
         </div>
       </div>
     </div>
