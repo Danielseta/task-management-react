@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import crossIcon from "../assets/icon-cross.svg";
 
 function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
   const [title, setTitle] = useState("");
@@ -57,15 +58,18 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
           <label className=" text-sm dark:text-white text-gray-500 ">
             Subtasks
           </label>
-          {subtasks.map((subtask, index) => {
+
+          {subtasks.map((subtask, index) => (
             <div key={index} className=" flex items-center w-full">
               <input
                 type="text"
                 value={subtask.title}
-                className=" bg-transparent outline-none"
+                className=" bg-transparent outline-none focus:border-0 border flex-grow px-4 py-2 rounded-md text-sm border-gray-600 focus:outline-[#635fc7] "
+                placeholder=" e.g Take coffee break"
               />
-            </div>;
-          })}
+              <img src={crossIcon} n-4 />
+            </div>
+          ))}
         </div>
       </div>
     </div>
