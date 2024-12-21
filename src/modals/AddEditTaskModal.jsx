@@ -10,6 +10,19 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
     { title: "", isCompleted: false, id: uuidv4() },
   ]);
 
+  const onChange = (id, newValue) => {
+    setSubtasks((pervState) => {
+      const newState = [...pervState];
+      const subtask = newState.find((subtask) => subtask.id === id);
+      subtask.title = newValue;
+      return newState;
+    });
+  };
+
+  const onDelete = (id) => {
+    setSubtasks((perState) => perState.filter((el) => el.id !== id));
+  };
+
   return (
     <div
       onClick={(e) => {
@@ -62,12 +75,22 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
           {subtasks.map((subtask, index) => (
             <div key={index} className=" flex items-center w-full">
               <input
+                onChange={(e) => {
+                  onChange(subtask.id, e.target.value);
+                }}
                 type="text"
                 value={subtask.title}
                 className=" bg-transparent outline-none focus:border-0 border flex-grow px-4 py-2 rounded-md text-sm border-gray-600 focus:outline-[#635fc7] "
                 placeholder=" e.g Take coffee break"
               />
-              <img src={crossIcon} n-4 />
+              <img
+                onClick={() => {
+                  onDelete(subtask.id);
+                }}
+                src={crossIcon}
+                className=" m-4
+              cursor-pointer"
+              />
             </div>
           ))}
         </div>
