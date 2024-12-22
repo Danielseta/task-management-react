@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
+import { useSelector } from "react-redux";
 
 function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const board = useSelector((state) => state.boards).find(
+    (board) => board.isActive
+  );
+
+  const columns = board.columns;
+
   const [subtasks, setSubtasks] = useState([
     { title: "", isCompleted: false, id: uuidv4() },
     { title: "", isCompleted: false, id: uuidv4() },
@@ -110,7 +118,13 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
           <label className=" text-sm dark:text-white text-gray-500">
             Current Status
           </label>
-          <select className=" select-status flex flex-grow px-4 py-2 rounde-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none"></select>
+          <select className=" select-status flex flex-grow px-4 py-2 rounde-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none">
+            {columns.map((column, index) => (
+              <option value={column.name} key={index}>
+                {column.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
