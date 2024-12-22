@@ -8,7 +8,7 @@ function AddEditTaskModal({
   type,
   device,
   setOpenAddEditTask,
-  perColIndex = 0,
+  pervColIndex = 0,
 }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
@@ -20,6 +20,8 @@ function AddEditTaskModal({
   );
 
   const columns = board.columns;
+  const col = columns.find((col, index) => index === pervColIndex);
+  const [status, setStatus] = useState(columns[pervColIndex].name);
 
   const [subtasks, setSubtasks] = useState([
     { title: "", isCompleted: false, id: uuidv4() },
@@ -33,6 +35,10 @@ function AddEditTaskModal({
       subtask.title = newValue;
       return newState;
     });
+  };
+
+  const onChangeStatus = (e) => {
+    setStatus(e.target.value);
   };
 
   const onDelete = (id) => {
@@ -152,7 +158,11 @@ function AddEditTaskModal({
           <label className=" text-sm dark:text-white text-gray-500">
             Current Status
           </label>
-          <select className=" select-status flex flex-grow px-4 py-2 rounde-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none">
+          <select
+            value={status}
+            onChange={(e) => onChangeStatus(e)}
+            className=" select-status flex flex-grow px-4 py-2 rounde-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none"
+          >
             {columns.map((column, index) => (
               <option value={column.name} key={index}>
                 {column.name}
