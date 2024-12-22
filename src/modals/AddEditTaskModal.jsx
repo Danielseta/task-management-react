@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4, validate } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import boardsSlice from "../redux/boardsSlice";
 
-function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
+function AddEditTaskModal({
+  type,
+  device,
+  setOpenAddEditTask,
+  perColIndex = 0,
+}) {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
   const board = useSelector((state) => state.boards).find(
     (board) => board.isActive
@@ -29,6 +37,32 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
 
   const onDelete = (id) => {
     setSubtasks((perState) => perState.filter((el) => el.id !== id));
+  };
+
+  const validate = () => {
+    setIsValid(false);
+    if (!title.trim()) {
+      return false;
+    }
+    for (let i = 0; i < subtasks.length; i++) {
+      if (!subtasks[i].name.trim()) {
+        return false;
+      }
+    }
+    setIsValid(true);
+    return true;
+  };
+
+  const onSubmit = (type) => {
+    if (type === "add") {
+      dispatch(
+        boardsSlice.actions.addTask({
+          title,
+          description,
+          subtasks,
+        })
+      );
+    }
   };
 
   return (
@@ -125,6 +159,17 @@ function AddEditTaskModal({ type, device, setOpenAddEditTask }) {
               </option>
             ))}
           </select>
+          <button
+            onClick={() => {
+              const isValid = validate();
+              if (isValid) {
+                onSubmit(type);
+              }
+            }}
+            className=" w-full items-center text-white bg-[#635fc7] py-2 rounded-full"
+          >
+            {type === "edit" ? "Save Edit" : "Create Task"}
+          </button>
         </div>
       </div>
     </div>
