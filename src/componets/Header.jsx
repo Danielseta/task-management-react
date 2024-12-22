@@ -75,6 +75,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
         <AddEditTaskModal
           setOpenAddEditTask={setOpenAddEditTask}
           device="mobile"
+          type="add"
         />
       )}
     </div>

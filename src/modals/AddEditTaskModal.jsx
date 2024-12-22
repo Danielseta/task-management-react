@@ -8,6 +8,7 @@ function AddEditTaskModal({
   type,
   device,
   setOpenAddEditTask,
+  taskIndex,
   pervColIndex = 0,
 }) {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function AddEditTaskModal({
   const columns = board.columns;
   const col = columns.find((col, index) => index === pervColIndex);
   const [status, setStatus] = useState(columns[pervColIndex].name);
+  const [newColIndex, setNewColIndex] = useState(pervColIndex);
 
   const [subtasks, setSubtasks] = useState([
     { title: "", isCompleted: false, id: uuidv4() },
@@ -39,6 +41,7 @@ function AddEditTaskModal({
 
   const onChangeStatus = (e) => {
     setStatus(e.target.value);
+    setNewColIndex(e.target.selecteIndex);
   };
 
   const onDelete = (id) => {
@@ -51,7 +54,7 @@ function AddEditTaskModal({
       return false;
     }
     for (let i = 0; i < subtasks.length; i++) {
-      if (!subtasks[i].name.trim()) {
+      if (!subtasks[i].title.trim()) {
         return false;
       }
     }
@@ -66,6 +69,19 @@ function AddEditTaskModal({
           title,
           description,
           subtasks,
+          newColIndex,
+        })
+      );
+    } else {
+      dispatch(
+        boardsSlice.actions.editTask({
+          title,
+          description,
+          subtasks,
+          status,
+          taskIndex,
+          pervColIndex,
+          newColIndex,
         })
       );
     }
@@ -174,6 +190,7 @@ function AddEditTaskModal({
               const isValid = validate();
               if (isValid) {
                 onSubmit(type);
+                setOpenAddEditTask(false);
               }
             }}
             className=" w-full items-center text-white bg-[#635fc7] py-2 rounded-full"
