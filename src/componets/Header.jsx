@@ -7,6 +7,7 @@ import HeaderDropdown from "./HeaderDropdown";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import AddEditTaskModal from "../modals/AddEditTaskModal";
+import ElipsisMenu from "./ElipsisMenu";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -55,6 +56,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
             +
           </button>
           <img src={elipsis} alt="elipsis" className=" cursor-pointer h-6" />
+          {isElipsisOpen && <ElipsisMenu type="Boards" />}
         </div>
       </header>
 

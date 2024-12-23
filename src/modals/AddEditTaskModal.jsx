@@ -14,6 +14,7 @@ function AddEditTaskModal({
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isElipsisOpen, setIsElipsisOpen] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
   const board = useSelector((state) => state.boards).find(
