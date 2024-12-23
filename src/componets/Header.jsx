@@ -11,6 +11,7 @@ import ElipsisMenu from "./ElipsisMenu";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [openAddEditTask, setOpenAddEditTask] = useState(false);
   const [isElipsisOpen, setIsElipsisOpen] = useState(false);
   const [boardType, setBoardType] = useState("add");
@@ -19,6 +20,16 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
 
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
+
+  const setOpenEditModal = () => {
+    setBoardModalOpen(true);
+    setIsElipsisOpen(false);
+  };
+
+  const setOpenDeleteModal = () => {
+    setOpenDeleteModal(true);
+    setIsElipsisOpen(false);
+  };
 
   return (
     <div className=" p-4 fixed left-0 bg-white dark:bg-[#2b2c37] z-50 right-0">
@@ -66,7 +77,13 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
             alt="elipsis"
             className=" cursor-pointer h-6"
           />
-          {isElipsisOpen && <ElipsisMenu type="Boards" />}
+          {isElipsisOpen && (
+            <ElipsisMenu
+              setOpenDeleteModal={setIsDeleteModalOpen}
+              setOpenEditModal={setOpenEditModal}
+              type="Boards"
+            />
+          )}
         </div>
       </header>
 
