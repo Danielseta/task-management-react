@@ -12,6 +12,7 @@ import ElipsisMenu from "./ElipsisMenu";
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openAddEditTask, setOpenAddEditTask] = useState(false);
+  const [isElipsisOpen, setIsElipsisOpen] = useState(false);
   const [boardType, setBoardType] = useState("add");
 
   const dispatch = useDispatch();
@@ -55,7 +56,16 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
           >
             +
           </button>
-          <img src={elipsis} alt="elipsis" className=" cursor-pointer h-6" />
+          <img
+            src={elipsis}
+            onClick={() => {
+              setBoardType("edit");
+              setOpenDropdown(false);
+              setIsElipsisOpen((state) => !state);
+            }}
+            alt="elipsis"
+            className=" cursor-pointer h-6"
+          />
           {isElipsisOpen && <ElipsisMenu type="Boards" />}
         </div>
       </header>
