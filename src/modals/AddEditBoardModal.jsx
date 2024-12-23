@@ -20,10 +20,12 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
 
   if (type === "edit" && isFirstLoad) {
     setnewColumns(
-      board.column.map((col) => {
+      board.columns.map((col) => {
         return { ...col, id: uuidv4() };
       })
     );
+    setName(board.name);
+    setIsFirstLoad(false);
   }
 
   const onChange = (id, newValue) => {
