@@ -8,6 +8,7 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import AddEditTaskModal from "../modals/AddEditTaskModal";
 import ElipsisMenu from "./ElipsisMenu";
+import DeleteModal from "../modals/DeleteModal";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -79,7 +80,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
           />
           {isElipsisOpen && (
             <ElipsisMenu
-              setOpenDeleteModal={setIsDeleteModalOpen}
+              setOpenDeleteModal={setOpenDeleteModal}
               setOpenEditModal={setOpenEditModal}
               type="Boards"
             />
@@ -107,6 +108,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
           type="add"
         />
       )}
+      {isDeleteModalOpen && <DeleteModal />}
     </div>
   );
 }
