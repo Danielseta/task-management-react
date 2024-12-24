@@ -10,16 +10,16 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isValid, setIsValid] = useState(true);
   const board = useSelector((state) => state.boards).find(
-    (board) => board.iSActive
+    (board) => board.isActive
   );
 
-  const [newColumns, setnewColumns] = useState([
+  const [newColumns, setNewColumns] = useState([
     { name: "TODO", task: [], id: uuidv4() },
     { name: "Doing", task: [], id: uuidv4() },
   ]);
 
   if (type === "edit" && isFirstLoad) {
-    setnewColumns(
+    setNewColumns(
       board.columns.map((col) => {
         return { ...col, id: uuidv4() };
       })
@@ -29,7 +29,7 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
   }
 
   const onChange = (id, newValue) => {
-    setnewColumns((pervState) => {
+    setNewColumns((pervState) => {
       const newState = [...pervState];
       const column = newState.find((col) => col.id === id);
       column.name = newValue;
