@@ -28,7 +28,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
   };
 
   const setOpenDeleteModal = () => {
-    setOpenDeleteModal(true);
+    setIsDeleteModalOpen(true);
     setIsElipsisOpen(false);
   };
 
