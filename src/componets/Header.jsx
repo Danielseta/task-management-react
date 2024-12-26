@@ -108,7 +108,7 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
           type="add"
         />
       )}
-      {isDeleteModalOpen && <DeleteModal />}
+      {isDeleteModalOpen && <DeleteModal type=" board" />}
     </div>
   );
 }
