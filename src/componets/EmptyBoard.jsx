@@ -14,7 +14,6 @@ function EmptyBoard({ type }) {
         className=" w-full items-center max-w-xs font-bold hover:opacity-70 dark:text-white dark:bg-[#635fc7] mt-8 relative text-white bg-[#635fc7]
         py-2 rounded-full"
       >
-        {type === "edit" ? "+Add New Column" : "+ Add New Board"}
       </button>
       {isBoardModalOpen && (
         <AddEditBoardModal type={type} setBoardModalOpen={setBoardModalOpen} />
