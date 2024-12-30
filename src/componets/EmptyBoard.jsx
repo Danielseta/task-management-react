@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 
 function EmptyBoard({ type }) {
@@ -17,9 +17,14 @@ function EmptyBoard({ type }) {
         }}
         className=" w-full items-center max-w-xs font-bold hover:opacity-70 dark:text-white dark:bg-[#635fc7] mt-8 relative text-white bg-[#635fc7]
         py-2 rounded-full"
-      ></button>
+      >
+        {type === "edit" ? "+Add New Column" : "+Add New Board"}
+      </button>
       {isBoardModalOpen && (
-        <AddEditBoardModal type={type} setBoardModalOpen={setBoardModalOpen} />
+        <AddEditBoardModal
+          type={type}
+          setIsBoardModalOpen={setIsBoardModalOpen}
+        />
       )}
     </div>
   );
