@@ -1,6 +1,8 @@
 import React from "react";
 
 function EmptyBoard({ type }) {
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
+
   return (
     <div className=" bg-white dark:bg-[#2b2c37] h-screen w-screen flex flex-col items-center justify-center">
       <h3 className=" text-gray-500 font-bold">
@@ -14,6 +16,9 @@ function EmptyBoard({ type }) {
       >
         {type === "edit" ? "+Add New Column" : "+ Add New Board"}
       </button>
+      {isBoardModalOpen && (
+        <AddEditBoardModal type={type} setBoardModalOpen={setBoardModalOpen} />
+      )}
     </div>
   );
 }
