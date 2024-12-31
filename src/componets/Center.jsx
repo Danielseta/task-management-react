@@ -11,6 +11,8 @@ function Center({ boardModalOpen, setBoardModalOpen }) {
   const [isSideBarOpen, setIsSideBarOpen] = useState(true);
 
   const boards = useSelector((state) => state.boards);
+  const board = boards.find((board) => board.isActive === true);
+  const columns = board.columns;
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -33,6 +35,11 @@ function Center({ boardModalOpen, setBoardModalOpen }) {
       }
     >
       {windowSize[0] >= 768 && <SideBar />}
+
+      {/** colums  */}
+      {columns.map((col, index) => (
+        <column key={index} colIndex={index} />
+      ))}
     </div>
   );
 }
