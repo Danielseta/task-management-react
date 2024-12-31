@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import SideBar from "./SideBar";
+import { useSelector } from "react-redux";
 
 function Center({ boardModalOpen, setBoardModalOpen }) {
   const [windowSize, setWindowSize] = useState([
@@ -7,6 +9,8 @@ function Center({ boardModalOpen, setBoardModalOpen }) {
   ]);
 
   const [isSideBarOpen, setIsSideBarOpen] = useState(true);
+
+  const boards = useSelector((state) => state.boards);
 
   useEffect(() => {
     const handleWindowResize = () => {
