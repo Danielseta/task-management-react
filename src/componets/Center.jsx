@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
+import Column from "./Column";
 import { useSelector } from "react-redux";
 
 function Center({ boardModalOpen, setBoardModalOpen }) {
@@ -38,7 +39,7 @@ function Center({ boardModalOpen, setBoardModalOpen }) {
 
       {/** colums  */}
       {columns.map((col, index) => (
-        <column key={index} colIndex={index} />
+        <Column key={index} colIndex={index} />
       ))}
     </div>
   );
