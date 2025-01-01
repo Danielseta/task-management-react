@@ -20,7 +20,7 @@ function Center({ boardModalOpen, setBoardModalOpen }) {
       setWindowSize([window.innerWidth, window.innerHeight]);
     };
 
-    window.removeEventListener("resize , handleWindowResize");
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
