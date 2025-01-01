@@ -19,17 +19,17 @@ function Column({ colIndex }) {
 
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
-  const board = boards.find(board.isActive);
-  const col = board.column.find((col, i === colIndex));
+  const board = boards.find((board) => board.isActive);
+  const col = board.columns.find((col, i) => i === colIndex);
 
   useEffect(() => {
     setColor(shuffle(colors).pop()); // OTP
   }, [dispatch]);
 
   return (
-    <div className=" scrollbar-hide mx-5 pt-[90px] min-w-[288px]">
-      <p className=" font-bold flex items-center gap-2 tracking-widest md:tracking-[.2em] text-[#828fa3]">
-        <div className={" rounded-full w-4 h-4 ${color"} />
+    <div className="scrollbar-hide   mx-5 pt-[90px] min-w-[280px] ">
+      <p className=" font-semibold flex  items-center  gap-2 tracking-widest md:tracking-[.2em] text-[#828fa3]">
+        <div className={`rounded-full w-4 h-4 ${color} `} />
       </p>
     </div>
   );
