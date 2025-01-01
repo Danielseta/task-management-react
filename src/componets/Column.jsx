@@ -26,7 +26,13 @@ function Column({ colIndex }) {
     setColor(shuffle(colors).pop()); // OTP
   }, [dispatch]);
 
-  return <div></div>;
+  return (
+    <div className=" scrollbar-hide mx-5 pt-[90px] min-w-[288px]">
+      <p className=" font-bold flex items-center gap-2 tracking-widest md:tracking-[.2em] text-[#828fa3]">
+        <div className={" rounded-full w-4 h-4 ${color"} />
+      </p>
+    </div>
+  );
 }
 
 export default Column;
