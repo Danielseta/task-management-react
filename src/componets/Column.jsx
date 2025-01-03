@@ -1,6 +1,7 @@
 import { shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Task from "./Task";
 
 function Column({ colIndex }) {
   const colors = [
@@ -32,6 +33,9 @@ function Column({ colIndex }) {
         <div className={`rounded-full w-4 h-4 ${color} `} />
         {col.name} ({col.tasks.length})
       </p>
+      {col.tasks.map((task, index) => (
+        <Task key={index} taskIndex={index} colIndex={colIndex} />
+      ))}
     </div>
   );
 }
