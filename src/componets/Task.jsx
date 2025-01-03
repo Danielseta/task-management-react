@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux"; // Import both
 
 function Task({ taskIndex, colIndex }) {
   const boards = useSelector((state) => state.boards);

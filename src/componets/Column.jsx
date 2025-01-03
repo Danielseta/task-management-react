@@ -13,12 +13,11 @@ function Column({ colIndex }) {
     "bg-indigo-500",
     "bg-yellow-500",
     "bg-pink-500",
-    "bg-sly-500",
+    "bg-sky-500",
   ];
 
-  const [color, setColor] = useState(null);
-
   const dispatch = useDispatch();
+  const [color, setColor] = useState(null);
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
   const col = board.columns.find((col, i) => i === colIndex);
@@ -33,6 +32,7 @@ function Column({ colIndex }) {
         <div className={`rounded-full w-4 h-4 ${color} `} />
         {col.name} ({col.tasks.length})
       </p>
+
       {col.tasks.map((task, index) => (
         <Task key={index} taskIndex={index} colIndex={colIndex} />
       ))}
