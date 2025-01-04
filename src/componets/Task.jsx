@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"; // Import both
+import TaskModal from "./TaskModal";
 
 function Task({ taskIndex, colIndex }) {
   const boards = useSelector((state) => state.boards);
@@ -21,6 +22,9 @@ function Task({ taskIndex, colIndex }) {
   return (
     <div>
       <div
+        onClick={() => {
+          setisTaskModalOpen(true);
+        }}
         className=" w-[280px] first:my-5 rounded-lg bg-white dark:bg-[#2b2c37] shadow-[#364e7e1a]
     py-6 px-3 shadow-lg hover:text-[#635fc7] dark:text-white dark:hover:text-[#635fc7] cursor-pointer
     "
@@ -30,6 +34,13 @@ function Task({ taskIndex, colIndex }) {
           {completed} of {subtasks.length} completed tasks
         </p>
       </div>
+      {isTaskModalOpen && (
+        <TaskModal
+        //colIndex={colIndex}
+        //taskIndex={taskIndex}
+        //setIsTaskModalOpen={setIsTaskModalOpen}
+        />
+      )}
     </div>
   );
 }
