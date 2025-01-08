@@ -23,6 +23,12 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const [newColIndex, setNewColIndex] = useState(columns.indexOf(col));
   const [elipsisMenuOpen, setElipsisMenuOpen] = useState(false);
 
+  const setOpenEditModal = () => {
+    //time time
+  };
+
+  const setOpenDeleteModal = () => {};
+
   return (
     <div
       className=" fixed right-0 left-0 top-0 px-2 py-4 overflow-scroll scrollbar-hide 
@@ -31,7 +37,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
       {/** modal */}
       <div className=" scrollbar-hide overflow-y-scroll max-h-[95vh] my-auto bg-white dark:bg-[#2b2c37] text-black dark:text-white font-bold shadow-md shadow-[#364e7e1a] max-w-md mx-auto w-full px-8 py-8 rounded-xl">
         <div className=" relative flex justify-between w-full items-center">
-          <h1 className=" text lg"></h1>
+          <h1 className=" text lg">{task.title}</h1>
           <img
             src={elipsis}
             onClick={() => {
@@ -39,7 +45,18 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
             }}
             className=" cursor-pointer h-6"
           />
-          {elipsisMenuOpen && <ElipsisMenu />}
+          {elipsisMenuOpen && (
+            <ElipsisMenu
+              setOpenEditModal={setOpenEditModal}
+              setOpenDeleteModal={setOpenDeleteModal}
+              type="Task"
+            />
+          )}
+          <div>
+            <p className=" text-gray-500 font-semibold tracking-wide text-sm pt-6">
+              {task.description}
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -12,11 +12,10 @@ function AddEditTaskModal({
   pervColIndex = 0,
 }) {
   const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isValid, setIsValid] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [isElipsisOpen, setIsElipsisOpen] = useState(false);
-  const [isValid, setIsValid] = useState(true);
-
   const board = useSelector((state) => state.boards).find(
     (board) => board.isActive
   );
@@ -45,10 +44,6 @@ function AddEditTaskModal({
     setNewColIndex(e.target.selecteIndex);
   };
 
-  const onDelete = (id) => {
-    setSubtasks((perState) => perState.filter((el) => el.id !== id));
-  };
-
   const validate = () => {
     setIsValid(false);
     if (!title.trim()) {
@@ -61,6 +56,20 @@ function AddEditTaskModal({
     }
     setIsValid(true);
     return true;
+  };
+  if (type === "edit" && isFirstLoad) {
+    setSubtasks(
+      task.subtasks.map((subtask) => {
+        return { ...subtask, id: uuidv4() };
+      })
+    );
+    setTitle(task.title);
+    setDescription(task.description);
+    setIsFirstLoad(false);
+  }
+
+  const onDelete = (id) => {
+    setSubtasks((prevState) => prevState.filter((el) => el.id !== id));
   };
 
   const onSubmit = (type) => {
