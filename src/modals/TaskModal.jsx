@@ -63,10 +63,10 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           {subtasks.map((subtask, i) => {
             return (
               <Subtask
-                index={index}
+                index={i}
                 taskIndex={taskIndex}
                 colIndex={colIndex}
-                key={index}
+                key={i}
               />
             );
           })}
