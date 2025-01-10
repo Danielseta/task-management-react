@@ -77,7 +77,14 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           <label className=" text-sm dark:text-white text-gray-500">
             Current Status
           </label>
-          <select className=" select-status flex-grow px-4 py-2 rounded-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none"></select>
+          <select
+            className=" select-status flex-grow px-4 py-2 rounded-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none"
+            value={status}
+          >
+            {columns.map((column, i) => (
+              <option className=" status-option">{column.name}</option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
