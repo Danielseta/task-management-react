@@ -31,6 +31,11 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
 
   const setOpenDeleteModal = () => {};
 
+  const onChange = (e) => {
+    setStatus(e.target.value);
+    setNewColIndex(e.target.selectedIndex);
+  };
+
   return (
     <div className=" fixed right-8 left-0 top-0 px-2 py-4 overflow-scroll scrollbar-hide z-50 bottom-0 justify-center items-center flex bg-[#00000080]">
       {/** modal */}
@@ -80,6 +85,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           <select
             className=" select-status flex-grow px-4 py-2 rounded-md text-sm bg-transparent focus:border-0 border border-gray-300 focus:outline-[#635fc7] outline-none"
             value={status}
+            onChange={onChange}
           >
             {columns.map((column, i) => (
               <option className=" status-option">{column.name}</option>
