@@ -5,6 +5,7 @@ import ElipsisMenu from "../componets/ElipsisMenu";
 import Task from "../componets/Task";
 import Subtask from "../componets/Subtask";
 import boardsSlice from "../redux/boardsSlice";
+import DeleteModal from "../modals/DeleteModal";
 
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const dispatch = useDispatch();
@@ -26,12 +27,17 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const [newColIndex, setNewColIndex] = useState(columns.indexOf(col));
   const [elipsisMenuOpen, setElipsisMenuOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
 
   const setOpenEditModal = () => {
-    //time time
+    setIsAddTaskModalOpen(true);
+    setElipsisMenuOpen(false);
   };
 
-  const setOpenDeleteModal = () => {};
+  const setOpenDeleteModal = () => {
+    setElipsisMenuOpen(false);
+    setIsDeleteModalOpen(true);
+  };
 
   const onClose = (e) => {
     if (e.target !== e.currentTarget) {
@@ -51,6 +57,12 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const onChange = (e) => {
     setStatus(e.target.value);
     setNewColIndex(e.target.selectedIndex);
+  };
+
+  const onDeleteBtnClick = () => {
+    dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
+    setIsTaskModalOpen(false);
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -113,6 +125,14 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           </select>
         </div>
       </div>
+      {isDeleteModalOpen && (
+        <DeleteModal
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          onDeleteBtnClick={onDeleteBtnClick}
+          title={task.title}
+          type="task"
+        />
+      )}
     </div>
   );
 }
