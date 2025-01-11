@@ -4,6 +4,7 @@ import elipsis from "../assets/icon-vertical-elipsis.svg";
 import ElipsisMenu from "../componets/ElipsisMenu";
 import Task from "../componets/Task";
 import Subtask from "../componets/Subtask";
+import boardsSlice from "../redux/boardsSlice";
 
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const [status, setStatus] = useState(task.status);
   const [newColIndex, setNewColIndex] = useState(columns.indexOf(col));
   const [elipsisMenuOpen, setElipsisMenuOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const setOpenEditModal = () => {
     //time time
@@ -31,13 +33,31 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
 
   const setOpenDeleteModal = () => {};
 
+  const onClose = (e) => {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    dispatch(
+      boardsSlice.actions.setTaskStatus({
+        taskIndex,
+        colIndex,
+        newColIndex,
+        status,
+      })
+    );
+    setIsTaskModalOpen(false);
+  };
+
   const onChange = (e) => {
     setStatus(e.target.value);
     setNewColIndex(e.target.selectedIndex);
   };
 
   return (
-    <div className=" fixed right-8 left-0 top-0 px-2 py-4 overflow-scroll scrollbar-hide z-50 bottom-0 justify-center items-center flex bg-[#00000080]">
+    <div
+      onClick={onClose}
+      className=" fixed right-8 left-0 top-0 px-2 py-4 overflow-scroll scrollbar-hide z-50 bottom-0 justify-center items-center flex bg-[#00000080]"
+    >
       {/** modal */}
       <div className="scrollbar-hide overflow-y-scroll max-h-[95vh]  my-auto  bg-white dark:bg-[#2b2c37] text-black dark:text-white font-bold shadow-md shadow-[#364e7e1a] max-w-md mx-auto  w-full px-8  py-8 rounded-xl">
         <div className=" relative flex justify-between w-full items-center">
