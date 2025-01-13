@@ -6,6 +6,7 @@ import Task from "../componets/Task";
 import Subtask from "../componets/Subtask";
 import boardsSlice from "../redux/boardsSlice";
 import DeleteModal from "../modals/DeleteModal";
+import AddEditTaskModal from "../modals/AddEditTaskModal";
 
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const dispatch = useDispatch();
@@ -131,6 +132,15 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           onDeleteBtnClick={onDeleteBtnClick}
           title={task.title}
           type="task"
+        />
+      )}
+      {isAddTaskModalOpen && (
+        <AddEditTaskModal
+          setOpenAddEditTask={setOpenAddEditTask}
+          type="edit"
+          taskIndex={taskIndex}
+          pervColIndex={colIndex}
+          setIsTaskModalOpen={setIsTaskModalOpen}
         />
       )}
     </div>

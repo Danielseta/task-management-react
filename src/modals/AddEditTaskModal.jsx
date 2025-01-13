@@ -8,6 +8,7 @@ function AddEditTaskModal({
   type,
   device,
   setOpenAddEditTask,
+  setIsTaskModalOpen,
   taskIndex,
   pervColIndex = 0,
 }) {
