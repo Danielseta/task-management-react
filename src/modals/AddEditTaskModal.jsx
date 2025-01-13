@@ -7,10 +7,10 @@ import boardsSlice from "../redux/boardsSlice";
 function AddEditTaskModal({
   type,
   device,
-  setOpenAddEditTask,
   setIsTaskModalOpen,
+  setIsAddTaskModalOpen,
   taskIndex,
-  pervColIndex = 0,
+  prevColIndex = 0,
 }) {
   const dispatch = useDispatch();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -22,9 +22,10 @@ function AddEditTaskModal({
   );
 
   const columns = board.columns;
-  const col = columns.find((col, index) => index === pervColIndex);
-  const [status, setStatus] = useState(columns[pervColIndex].name);
-  const [newColIndex, setNewColIndex] = useState(pervColIndex);
+  const col = columns.find((col, index) => index === prevColIndex);
+  const task = col ? col.tasks.find((task, index) => index === taskIndex) : [];
+  const [status, setStatus] = useState(columns[prevColIndex].name);
+  const [newColIndex, setNewColIndex] = useState(prevColIndex);
 
   const [subtasks, setSubtasks] = useState([
     { title: "", isCompleted: false, id: uuidv4() },

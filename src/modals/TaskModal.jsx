@@ -136,11 +136,11 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
       )}
       {isAddTaskModalOpen && (
         <AddEditTaskModal
-          setOpenAddEditTask={setOpenAddEditTask}
+          setIsAddTaskModalOpen={setIsAddTaskModalOpen}
+          setIsTaskModalOpen={setIsTaskModalOpen}
           type="edit"
           taskIndex={taskIndex}
-          pervColIndex={colIndex}
-          setIsTaskModalOpen={setIsTaskModalOpen}
+          prevColIndex={colIndex}
         />
       )}
     </div>
