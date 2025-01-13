@@ -92,7 +92,7 @@ function AddEditTaskModal({
           subtasks,
           status,
           taskIndex,
-          pervColIndex,
+          prevColIndex,
           newColIndex,
         })
       );
@@ -202,7 +202,7 @@ function AddEditTaskModal({
               const isValid = validate();
               if (isValid) {
                 onSubmit(type);
-                setOpenAddEditTask(false);
+                setIsAddTaskModalOpen(false);
               }
             }}
             className=" w-full items-center text-white bg-[#635fc7] py-2 rounded-full"
