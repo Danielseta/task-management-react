@@ -29,11 +29,11 @@ function Task({ taskIndex, colIndex }) {
   return (
     <div>
       <div
-        onDragStart={handleOnDrag}
-        draggable
         onClick={() => {
           setIsTaskModalOpen(true);
         }}
+        draggable
+        onDragStart={handleOnDrag}
         className=" w-[280px] first:my-5 rounded-lg bg-white dark:bg-[#2b2c37] shadow-[#364e7e1a]
     py-6 px-3 shadow-lg hover:text-[#635fc7] dark:text-white dark:hover:text-[#635fc7] cursor-pointer
     "
