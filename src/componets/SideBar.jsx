@@ -5,6 +5,10 @@ import boardIcon from "../assets/icon-board.svg";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
 import { Switch } from "@headlessui/react";
+import showSidebarIcon from "../assets/icon-show-sidebar.svg";
+import hideSidebarIcon from "../assets/icon-hide-sidebar.svg";
+import AddEditBoardModal from "../modals/AddEditBoardModal";
+import boardsSlice from "../redux/boardsSlice";
 
 function SideBar({ setIsSideBarOpen, isSideBarOpen }) {
   const dispatch = useDispatch();
@@ -18,6 +22,7 @@ function SideBar({ setIsSideBarOpen, isSideBarOpen }) {
     setDarkSide(checked);
   };
 
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
   const boards = useSelector((state) => state.boards);
 
   return (
@@ -53,7 +58,12 @@ function SideBar({ setIsSideBarOpen, isSideBarOpen }) {
                       <p className=" text-lg font-bold ">{board.name}</p>
                     </div>
                   ))}
-                  <div className=" flex  items-baseline space-x-2  mr-8 rounded-r-full duration-500 ease-in-out cursor-pointer text-[#635fc7] px-5 py-4 hover:bg-[#635fc71a] hover:text-[#635fc7] dark:hover:bg-white  ">
+                  <div
+                    onClick={() => {
+                      setIsBoardModalOpen(true);
+                    }}
+                    className=" flex  items-baseline space-x-2  mr-8 rounded-r-full duration-500 ease-in-out cursor-pointer text-[#635fc7] px-5 py-4 hover:bg-[#635fc71a] hover:text-[#635fc7] dark:hover:bg-white  "
+                  >
                     <img src={boardIcon} className=" h-4" />
                     <p className=" text-lg font-bold ">Create New Board</p>
                   </div>
@@ -80,8 +90,35 @@ function SideBar({ setIsSideBarOpen, isSideBarOpen }) {
               </div>
             </div>
           )}
+          {/* Sidebar hide/show toggle */}
+          {isSideBarOpen ? (
+            <div
+              onClick={() => setIsSideBarOpen((state) => !state)}
+              className=" flex  items-center mt-2  absolute bottom-16  text-lg font-bold  rounded-r-full hover:text-[#635FC7] cursor-pointer mr-6 mb-8 px-8 py-4 hover:bg-[#635fc71a] dark:hover:bg-white  space-x-2 justify-center  my-4 text-gray-500 "
+            >
+              <img
+                className=" min-w-[20px]"
+                src={hideSidebarIcon}
+                alt=" side bar show/hide"
+              />
+              {isSideBarOpen && <p> Hide Sidebar </p>}
+            </div>
+          ) : (
+            <div
+              onClick={() => setIsSideBarOpen((state) => !state)}
+              className=" absolute p-5"
+            >
+              <img src={showSidebarIcon} alt="showSidebarIcon" />
+            </div>
+          )}
         </div>
       </div>
+      {isBoardModalOpen && (
+        <AddEditBoardModal
+          type="add"
+          setIsBoardModalOpen={setIsBoardModalOpen}
+        />
+      )}
     </div>
   );
 }
